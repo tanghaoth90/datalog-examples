@@ -1,0 +1,8 @@
+.type NumConstant
+.type Node = NumConstant
+.decl Edge(?from:Node, ?to:Node)
+.input Edge(IO="file", filename="Edge.facts", delimiter="\t")
+.decl Path(?from:Node, ?to:Node)
+Path(?from, ?to) :- Edge(?from, ?to).
+Path(?from, ?to) :- Path(?from, ?via), Edge(?via, ?to).
+.output Path()
